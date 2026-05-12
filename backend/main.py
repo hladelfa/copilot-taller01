@@ -1,4 +1,5 @@
 import os
+import secrets
 from datetime import datetime, timedelta, timezone
 
 import jwt
@@ -7,7 +8,7 @@ from pydantic import BaseModel
 
 app = FastAPI(title="JWT FastAPI Demo")
 
-SECRET_KEY = os.getenv("JWT_SECRET_KEY", "change-this-in-production")
+SECRET_KEY = os.getenv("JWT_SECRET_KEY") or secrets.token_urlsafe(32)
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_SECONDS = 300
 REFRESH_TOKEN_EXPIRE_SECONDS = 3600
@@ -45,7 +46,9 @@ def _create_token(subject: str, expires_seconds: int, token_type: str) -> str:
 
 @app.post("/token", response_model=TokenResponse)
 def create_token(data: LoginRequest) -> TokenResponse:
-    if data.username != VALID_USERNAME or data.password != VALID_PASSWORD:
+    username_ok = secrets.compare_digest(data.username, VALID_USERNAME)
+    password_ok = secrets.compare_digest(data.password, VALID_PASSWORD)
+    if not username_ok or not password_ok:
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
     return TokenResponse(
@@ -58,7 +61,9 @@ def create_token(data: LoginRequest) -> TokenResponse:
 def refresh_token(data: RefreshRequest) -> TokenResponse:
     try:
         payload = jwt.decode(data.refresh_token, SECRET_KEY, algorithms=[ALGORITHM])
-    except jwt.PyJWTError as exc:
+    except jwt.ExpiredSignatureError as exc:
+        raise HTTPException(status_code=401, detail="Refresh token expired") from exc
+    except jwt.InvalidTokenError as exc:
         raise HTTPException(status_code=401, detail="Invalid refresh token") from exc
 
     if payload.get("type") != "refresh":

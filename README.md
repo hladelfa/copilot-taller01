@@ -22,6 +22,8 @@ Este proyecto contiene una aplicación **FastAPI** dentro de la carpeta `/backen
 - `ADMIN_USERNAME`: usuario válido para login (por defecto `admin`).
 - `ADMIN_PASSWORD`: contraseña válida para login (por defecto `admin123`).
 
+Si `JWT_SECRET_KEY` no está definida fuera de Docker, la app genera una clave aleatoria segura al iniciar.
+
 ## Endpoints
 
 ### 1) Obtener token
@@ -79,6 +81,7 @@ Swagger UI: http://localhost:8000/docs
 Desde la raíz del proyecto:
 
 ```bash
+export JWT_SECRET_KEY='una-clave-larga-y-segura'
 docker compose up --build
 ```
 
