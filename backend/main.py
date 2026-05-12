@@ -1,3 +1,4 @@
+import os
 from datetime import datetime, timedelta, timezone
 
 import jwt
@@ -6,13 +7,13 @@ from pydantic import BaseModel
 
 app = FastAPI(title="JWT FastAPI Demo")
 
-SECRET_KEY = "super-secret-key-change-me"
+SECRET_KEY = os.getenv("JWT_SECRET_KEY", "change-this-in-production")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_SECONDS = 300
 REFRESH_TOKEN_EXPIRE_SECONDS = 3600
 
-VALID_USERNAME = "admin"
-VALID_PASSWORD = "admin123"
+VALID_USERNAME = os.getenv("ADMIN_USERNAME", "admin")
+VALID_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
 
 
 class LoginRequest(BaseModel):

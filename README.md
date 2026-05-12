@@ -15,6 +15,13 @@ Este proyecto contiene una aplicación **FastAPI** dentro de la carpeta `/backen
 - `backend/Dockerfile`: imagen de la API
 - `docker-compose.yml`: despliegue local con Docker
 
+
+## Variables de entorno
+
+- `JWT_SECRET_KEY`: clave secreta para firmar JWT (recomendado definirla en producción).
+- `ADMIN_USERNAME`: usuario válido para login (por defecto `admin`).
+- `ADMIN_PASSWORD`: contraseña válida para login (por defecto `admin123`).
+
 ## Endpoints
 
 ### 1) Obtener token
