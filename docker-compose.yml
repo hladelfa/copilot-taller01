@@ -5,7 +5,7 @@ services:
     container_name: jwt-fastapi-backend
     environment:
       JWT_SECRET_KEY: ${JWT_SECRET_KEY:?Set JWT_SECRET_KEY before running docker compose}
-      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:?Set ADMIN_USERNAME before running docker compose}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD before running docker compose}
     ports:
       - "8000:8000"

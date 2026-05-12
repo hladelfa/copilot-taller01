@@ -19,8 +19,8 @@ Este proyecto contiene una aplicación **FastAPI** dentro de la carpeta `/backen
 ## Variables de entorno
 
 - `JWT_SECRET_KEY`: clave secreta para firmar JWT (**obligatoria**).
-- `ADMIN_USERNAME`: usuario válido para login (por defecto `admin`).
-- `ADMIN_PASSWORD`: contraseña válida para login (por defecto `admin123`; en Docker Compose se pide definirla explícitamente).
+- `ADMIN_USERNAME`: usuario válido para login (**obligatoria**). Para este caso de uso usar `admin`.
+- `ADMIN_PASSWORD`: contraseña válida para login (**obligatoria**). Para este caso de uso usar `admin123`.
 
 ## Endpoints
 
@@ -69,6 +69,8 @@ Devuelve un nuevo `access_token` (300s) y un nuevo `refresh_token`.
 ```bash
 cd backend
 export JWT_SECRET_KEY='una-clave-larga-y-segura'
+export ADMIN_USERNAME='admin'
+export ADMIN_PASSWORD='admin123'
 poetry install
 poetry run uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
@@ -81,6 +83,7 @@ Desde la raíz del proyecto:
 
 ```bash
 export JWT_SECRET_KEY='una-clave-larga-y-segura'
+export ADMIN_USERNAME='admin'
 export ADMIN_PASSWORD='admin123'
 docker compose up --build
 ```
