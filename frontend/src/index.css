@@ -1,0 +1,82 @@
+/* Design tokens from DESIGN.md */
+:root {
+  --color-primary: #0f172a;
+  --color-secondary: #e0e7ff;
+  --color-tertiary: #64748b;
+  --color-neutral: #f1f5f9;
+  --color-background: #fafafa;
+  --color-surface: #f8f9fa;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+  --color-border: #f1f5f9;
+  --color-accent: #0f172a;
+
+  --radius-sm: 4px;
+  --radius-md: 15px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+
+  --spacing-base: 12px;
+  --spacing-sm: 1px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-gap: 8px;
+  --spacing-card: 18px;
+  --spacing-section: 64px;
+
+  --shadow-card:
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.06) 0px 1px 1px -0.5px,
+    rgba(0, 0, 0, 0.06) 0px 3px 3px -1.5px,
+    rgba(0, 0, 0, 0.06) 0px 6px 6px -3px,
+    rgba(0, 0, 0, 0.06) 0px 12px 12px -6px,
+    rgba(0, 0, 0, 0.06) 0px 24px 24px -12px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glass card shell technique from DESIGN.md */
+.glass-shell {
+  padding: 1px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.5),
+    rgba(203, 213, 225, 0.3)
+  );
+  box-shadow: var(--shadow-card);
+}
+
+.glass-surface {
+  border-radius: calc(var(--radius-lg) - 1px);
+  background: rgba(248, 249, 250, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
