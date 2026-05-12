@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
@@ -221,6 +222,21 @@ const FEATURES = [
 export default function WelcomePage() {
   const { tokens, logout } = useAuth()
   const navigate = useNavigate()
+  const [secondsLeft, setSecondsLeft] = useState(tokens?.expires_in ?? 300)
+
+  useEffect(() => {
+    if (secondsLeft <= 0) return
+    const id = setInterval(() => {
+      setSecondsLeft((s) => {
+        if (s <= 1) {
+          clearInterval(id)
+          return 0
+        }
+        return s - 1
+      })
+    }, 1000)
+    return () => clearInterval(id)
+  }, [])
 
   function handleLogout() {
     logout()
@@ -267,8 +283,12 @@ export default function WelcomePage() {
             <div style={styles.divider} />
             <p style={{ ...styles.cardDesc, fontSize: '12px' }}>
               Token de acceso expira en{' '}
-              <strong>{tokens?.expires_in ?? 300} segundos</strong> desde el
-              inicio de sesión.
+              <strong style={{ color: secondsLeft < 60 ? '#991b1b' : '#0f172a' }}>
+                {secondsLeft > 0
+                  ? `${secondsLeft} segundos`
+                  : 'expirado — cierre sesión e ingrese nuevamente'}
+              </strong>
+              .
             </p>
           </div>
         </div>
