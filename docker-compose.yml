@@ -9,3 +9,14 @@ services:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD before running docker compose}
     ports:
       - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://backend:8000
+    container_name: compliance-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
