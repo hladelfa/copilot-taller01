@@ -68,7 +68,7 @@ Devuelve un nuevo `access_token` (300s) y un nuevo `refresh_token`.
 
 ```bash
 cd backend
-export JWT_SECRET_KEY='una-clave-larga-y-segura'
+export JWT_SECRET_KEY="$(openssl rand -hex 32)"
 export ADMIN_USERNAME='admin'
 export ADMIN_PASSWORD='admin123'
 poetry install
@@ -82,10 +82,12 @@ Swagger UI: http://localhost:8000/docs
 Desde la raíz del proyecto:
 
 ```bash
-export JWT_SECRET_KEY='una-clave-larga-y-segura'
+export JWT_SECRET_KEY="$(openssl rand -hex 32)"
 export ADMIN_USERNAME='admin'
 export ADMIN_PASSWORD='admin123'
 docker compose up --build
 ```
+
+> Usa una clave real y aleatoria en `JWT_SECRET_KEY` (mínimo 32 caracteres).
 
 Servicio disponible en: http://localhost:8000

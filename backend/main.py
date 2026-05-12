@@ -11,6 +11,8 @@ app = FastAPI(title="JWT FastAPI Demo")
 SECRET_KEY = os.getenv("JWT_SECRET_KEY")
 if not SECRET_KEY:
     raise RuntimeError("JWT_SECRET_KEY must be set")
+if len(SECRET_KEY) < 32:
+    raise RuntimeError("JWT_SECRET_KEY must be at least 32 characters long")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_SECONDS = 300
 REFRESH_TOKEN_EXPIRE_SECONDS = 3600
@@ -75,6 +77,8 @@ def refresh_token(data: RefreshRequest) -> TokenResponse:
 
     subject = payload.get("sub")
     if not subject:
+        raise HTTPException(status_code=401, detail="Invalid refresh token")
+    if not secrets.compare_digest(subject, VALID_USERNAME):
         raise HTTPException(status_code=401, detail="Invalid refresh token")
 
     return TokenResponse(
