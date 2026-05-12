@@ -8,7 +8,9 @@ from pydantic import BaseModel
 
 app = FastAPI(title="JWT FastAPI Demo")
 
-SECRET_KEY = os.getenv("JWT_SECRET_KEY") or secrets.token_urlsafe(32)
+SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+if not SECRET_KEY:
+    raise RuntimeError("JWT_SECRET_KEY must be set")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_SECONDS = 300
 REFRESH_TOKEN_EXPIRE_SECONDS = 3600
