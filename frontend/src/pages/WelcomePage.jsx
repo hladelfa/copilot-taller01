@@ -146,6 +146,32 @@ const styles = {
     lineHeight: '20px',
     color: '#64748b',
   },
+  sectionIntro: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '8px',
+  },
+  sectionTitle: {
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '24px',
+    fontWeight: 500,
+    lineHeight: '32px',
+    color: '#0f172a',
+  },
+  cardMeta: {
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '12px',
+    fontWeight: 500,
+    lineHeight: '18px',
+    color: '#475569',
+  },
+  cardLink: {
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '13px',
+    fontWeight: 500,
+    color: '#2563eb',
+    textDecoration: 'none',
+  },
   tokenSection: {
     padding: '1px',
     borderRadius: '16px',
@@ -216,6 +242,49 @@ const FEATURES = [
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
       </svg>
     ),
+  },
+]
+
+const CERTIFICATIONS_2026 = [
+  {
+    title: 'Copilot and Agent Administration Fundamentals',
+    description:
+      'Valida cómo soportar, asegurar y proteger un entorno de Microsoft 365 habilitado con IA.',
+    meta: 'Fundamentals · Anuncio oficial de mayo 2026',
+    href: 'https://learn.microsoft.com/en-us/credentials/certifications/copilot-and-agent-administration-fundamentals/',
+    icon: 'AI',
+  },
+  {
+    title: 'GitHub Actions',
+    description:
+      'Mide habilidades para automatizar workflows, crear acciones y operar CI/CD de forma segura.',
+    meta: 'Intermedio · Actualizada el 5 de febrero de 2026',
+    href: 'https://learn.microsoft.com/en-us/credentials/certifications/github-actions/',
+    icon: 'CI',
+  },
+  {
+    title: 'GitHub Administration',
+    description:
+      'Acredita la administración de GitHub Enterprise, identidades, gobernanza y seguridad a escala.',
+    meta: 'Intermedio · Actualizada el 4 de mayo de 2026',
+    href: 'https://learn.microsoft.com/en-us/credentials/certifications/github-administration/',
+    icon: 'GH',
+  },
+  {
+    title: 'GitHub Advanced Security',
+    description:
+      'Se enfoca en proteger código, secretos y dependencias durante todo el ciclo de desarrollo.',
+    meta: 'Intermedio · Actualizada el 4 de mayo de 2026',
+    href: 'https://learn.microsoft.com/en-us/credentials/certifications/github-advanced-security/',
+    icon: 'SEC',
+  },
+  {
+    title: 'GitHub Copilot',
+    description:
+      'Certifica el uso responsable de Copilot para elevar productividad, calidad y seguridad del desarrollo.',
+    meta: 'Intermedio · Actualizada el 19 de febrero de 2026',
+    href: 'https://learn.microsoft.com/en-us/credentials/certifications/github-copilot/',
+    icon: 'CP',
   },
 ]
 
@@ -301,6 +370,37 @@ export default function WelcomePage() {
                 <div style={styles.cardIcon}>{f.icon}</div>
                 <p style={styles.cardTitle}>{f.title}</p>
                 <p style={styles.cardDesc}>{f.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <section style={styles.sectionIntro}>
+          <span style={styles.eyebrow}>Microsoft Learn · 2026</span>
+          <h2 style={styles.sectionTitle}>Certificaciones destacadas para 2026</h2>
+          <p style={styles.heroSubtitle}>
+            Basado en los anuncios oficiales de Microsoft Learn y Partner Center de mayo de 2026,
+            estas son algunas de las certificaciones más recientes y relevantes para rutas de IA,
+            automatización y GitHub.
+          </p>
+        </section>
+
+        <div style={styles.grid}>
+          {CERTIFICATIONS_2026.map((certification) => (
+            <div key={certification.title} style={styles.cardShell}>
+              <div style={styles.cardSurface}>
+                <div style={styles.cardIcon}>{certification.icon}</div>
+                <p style={styles.cardTitle}>{certification.title}</p>
+                <p style={styles.cardDesc}>{certification.description}</p>
+                <p style={styles.cardMeta}>{certification.meta}</p>
+                <a
+                  href={certification.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={styles.cardLink}
+                >
+                  Ver certificación oficial
+                </a>
               </div>
             </div>
           ))}
