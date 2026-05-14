@@ -258,7 +258,7 @@ const CERTIFICATIONS_2026 = [
     title: 'GitHub Actions',
     description:
       'Mide habilidades para automatizar workflows, crear acciones y operar CI/CD de forma segura.',
-    meta: 'Intermedio · Actualizada el 05/02/2026',
+    meta: 'Intermedio · Actualizada el 5 de febrero de 2026',
     href: 'https://learn.microsoft.com/en-us/credentials/certifications/github-actions/',
     icon: 'CI',
   },
@@ -266,7 +266,7 @@ const CERTIFICATIONS_2026 = [
     title: 'GitHub Administration',
     description:
       'Acredita la administración de GitHub Enterprise, identidades, gobernanza y seguridad a escala.',
-    meta: 'Intermedio · Actualizada el 04/05/2026',
+    meta: 'Intermedio · Actualizada el 4 de mayo de 2026',
     href: 'https://learn.microsoft.com/en-us/credentials/certifications/github-administration/',
     icon: 'GH',
   },
@@ -274,7 +274,7 @@ const CERTIFICATIONS_2026 = [
     title: 'GitHub Advanced Security',
     description:
       'Se enfoca en proteger código, secretos y dependencias durante todo el ciclo de desarrollo.',
-    meta: 'Intermedio · Actualizada el 04/05/2026',
+    meta: 'Intermedio · Actualizada el 4 de mayo de 2026',
     href: 'https://learn.microsoft.com/en-us/credentials/certifications/github-advanced-security/',
     icon: 'SEC',
   },
@@ -282,7 +282,7 @@ const CERTIFICATIONS_2026 = [
     title: 'GitHub Copilot',
     description:
       'Certifica el uso responsable de Copilot para elevar productividad, calidad y seguridad del desarrollo.',
-    meta: 'Intermedio · Actualizada el 19/02/2026',
+    meta: 'Intermedio · Actualizada el 19 de febrero de 2026',
     href: 'https://learn.microsoft.com/en-us/credentials/certifications/github-copilot/',
     icon: 'CP',
   },
